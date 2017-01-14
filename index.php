@@ -2,9 +2,11 @@
 
   require_once __DIR__ . '/vendor/autoload.php';
   require_once __DIR__ . '/searchImage/config.php';
+  require_once __DIR__ . '/searchImage/searchImage.php';
 
   $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($channelToken);
   $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
+  $app = new searchImage();
 
   $signature = $_SERVER["HTTP_" . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
   try {
@@ -28,7 +30,8 @@
       error_log('Non text message has come');
       continue;
     }
-    $bot->replyText($event->getReplyToken(), $event->getText());
+    $app->search($event->getText());
+    $bot->replyText($event->getReplyToken(),$app);
   }
 
   echo "ok";
