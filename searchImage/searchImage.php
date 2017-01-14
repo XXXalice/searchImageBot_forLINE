@@ -11,7 +11,8 @@
             ];
             $res = $flickr->photos_search($option);
             $json = json_encode($res);            
-            return $json;
+            $obj = json_decode($json);
+            return $obj->photo->url_q;
         }
     }
 
