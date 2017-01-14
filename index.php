@@ -49,6 +49,6 @@
             ];
             $res = $flickr->photos_search($option);
             $json = json_encode($res);
-            $obj = json_decode($json);
-            echo $obj->photo->title;
+
+            echo $json['photo']["id"];
  ?>
