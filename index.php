@@ -50,5 +50,5 @@
             $res = $flickr->photos_search($option);
             $json = json_encode($res);
 
-            echo $json;
+            echo $json["photo"];
  ?>
