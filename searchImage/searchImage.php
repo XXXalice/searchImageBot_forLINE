@@ -1,9 +1,14 @@
 <?php
 
     class searchImage{
-        public function search($str){
-            return $str;
-        } 
+
+        public function search($str){    
+            global $flickr;
+            if($flickr){
+                return "ok";
+            }
+                return "ng";
+        }
     }
 
 ?>

@@ -3,11 +3,13 @@
   require_once __DIR__ . '/vendor/autoload.php';
   require_once __DIR__ . '/searchImage/config.php';
   require_once __DIR__ . '/searchImage/searchImage.php';
+  require_once __DIR__ . '/searchImage/phpFlickr.php';
 
   $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($channelToken);
   $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
   $app = new searchImage();
-
+  $flickr = new phpFlickr($accountkey,$accountsecret);
+  
   $signature = $_SERVER["HTTP_" . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
   try {
     $events = $bot->parseEventRequest(file_get_contents('php://input'), $signature);
