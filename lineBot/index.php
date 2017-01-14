@@ -47,4 +47,7 @@
         //アプリケーションから帰ってきたものを送りつける
         $bot->replyText($event->getReplyToken(),$app);
     }
+
+    echo 'ok';
+    
 ?>
