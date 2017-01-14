@@ -8,7 +8,7 @@
   $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($channelToken);
   $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
   $app = new searchImage();
-  $flickr = new phpFlickr($accountkey,$accountsecret);
+  $flickr = new phpFlickr($accountKey,$accountSecret);
 
   $signature = $_SERVER["HTTP_" . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
   try {
