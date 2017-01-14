@@ -49,12 +49,7 @@
                 'safe_search'=>1
             ];
             $res = $flickr->photos_search($option);
-            
-
-            foreach($result['photo'] as $photo)
-    {
-        // 写真url作成
-        
-        var_dump($photo);
-    }
+            $json = json_encode($res);
+            var_dump($json);
+    
  ?>
