@@ -43,11 +43,12 @@
 
             $option = [
                 'text'=>'たいやき',
+                'media'=>'photos',
                 'per_page'=>1,
                 'extra'=>'url_q'
             ];
             $res = $flickr->photos_search($option);
-            $json = json_encode($res);  
-
-            echo $json;
+            $json = json_encode($res);
+            $obj = json_decode($json);
+            echo $obj->photo->title;
  ?>
