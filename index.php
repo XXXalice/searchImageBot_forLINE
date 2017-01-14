@@ -30,8 +30,8 @@
       error_log('Non text message has come');
       continue;
     }
-    $app->search($event->getText());
-    $bot->replyText($event->getReplyToken(),$app);
+    $res = $app->search($event->getText());
+    $bot->replyText($event->getReplyToken(),$res);
   }
 
   echo "ok";
