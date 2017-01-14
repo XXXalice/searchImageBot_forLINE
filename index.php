@@ -44,11 +44,16 @@
             $option = [
                 'text'=>'たいやき',
                 'media'=>'photos',
-                'per_page'=>1,
+                'per_page'=>2,
                 'extra'=>'url_q'
             ];
             $res = $flickr->photos_search($option);
-            $json = json_encode($res);
+            
 
-            echo $json["photo"];
+            foreach($result['photo'] as $photo)
+    {
+        // 写真url作成
+        $url = "http://farm{$photo['farm']}.staticflickr.com/{$photo['server']}/{$photo['id']}_{$photo['secret']}.jpg";
+        var_dump($url);
+    }
  ?>
