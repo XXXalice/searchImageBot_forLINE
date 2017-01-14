@@ -36,6 +36,18 @@
     $bot->replyText($event->getReplyToken(),$res[0]);
   }
 
-  echo "ok";
 
+
+
+
+
+            $option = [
+                'text'=>'集合写真',
+                'per_page'=>1,
+                'extra'=>'url_q'
+            ];
+            $res = $flickr->photos_search($option);
+            $json = json_encode($res);  
+
+            echo $json;
  ?>
