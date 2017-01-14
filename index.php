@@ -45,7 +45,8 @@
                 'text'=>'たいやき',
                 'media'=>'photos',
                 'per_page'=>2,
-                'extra'=>'url_q'
+                'extras'=>'url_q',
+                'safe_search'=>1
             ];
             $res = $flickr->photos_search($option);
             
