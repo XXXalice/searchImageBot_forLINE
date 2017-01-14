@@ -48,7 +48,7 @@
                 'extra'=>'url_q'
             ];
             $res = $flickr->photos_search($option);
+            $json = json_encode($res);
 
-
-            echo $res['photo'];
+            echo $json;
  ?>
