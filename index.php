@@ -42,7 +42,7 @@
 
 
             $option = [
-                'text'=>'集合写真',
+                'text'=>'たいやき',
                 'per_page'=>1,
                 'extra'=>'url_q'
             ];
