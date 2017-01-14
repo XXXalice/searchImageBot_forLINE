@@ -54,7 +54,7 @@
             foreach($result['photo'] as $photo)
     {
         // 写真url作成
-        $url = "http://farm{$photo['farm']}.staticflickr.com/{$photo['server']}/{$photo['id']}_{$photo['secret']}.jpg";
-        var_dump($url);
+        
+        var_dump($photo);
     }
  ?>
