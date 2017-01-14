@@ -44,13 +44,13 @@
             $option = [
                 'text'=>'たいやき',
                 'media'=>'photos',
-                'per_page'=>2,
+                'per_page'=>1,
                 'extras'=>'url_q',
                 'safe_search'=>1
             ];
             $res = $flickr->photos_search($option);
             $json = json_encode($res);
             $obj = json_decode($json);
-            var_dump($obj);
+            var_dump($obj->url_q);
     
  ?>
