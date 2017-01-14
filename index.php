@@ -9,7 +9,7 @@
   $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
   $app = new searchImage();
   $flickr = new phpFlickr($accountkey,$accountsecret);
-  
+
   $signature = $_SERVER["HTTP_" . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
   try {
     $events = $bot->parseEventRequest(file_get_contents('php://input'), $signature);
@@ -33,7 +33,7 @@
       continue;
     }
     $res = $app->search($event->getText());
-    $bot->replyText($event->getReplyToken(),$res);
+    $bot->replyText($event->getReplyToken(),$res[0]);
   }
 
   echo "ok";
