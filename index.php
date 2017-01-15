@@ -33,8 +33,12 @@
       continue;
     }
     $res = $app->search($event->getText());
-    $imageMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($res[1],$res[0]);
-    $execution = $bot->replyMessage($event->getReplyToken(),$imageMessageBuilder);
+    if($res[0] && $res[1]){
+      $imageMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($res[1],$res[0]);
+      $execution = $bot->replyMessage($event->getReplyToken(),$imageMessageBuilder);
+    }else{
+      $bot->replyText($event->getReplyToken(),"画像が見つからなかったよ…　ごめんなさい…");
+    }
   }
 
  ?>
