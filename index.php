@@ -33,7 +33,7 @@
       continue;
     }
     $res = $app->search($event->getText());
-    $imageMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($res[0],$res[1]);
+    $imageMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($res[1],$res[0]);
     $execution = $bot->replyMessage($event->getReplyToken(),$imageMessageBuilder);
   }
 
