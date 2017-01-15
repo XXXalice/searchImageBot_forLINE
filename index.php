@@ -51,6 +51,8 @@
             $res = $flickr->photos_search($option);
             $json = json_encode($res);
             $obj = json_decode($json);
-            var_dump($obj->photo[0]->url_q);
-    
+            //var_dump($obj->photo[0]->url_q);
+            foreach($obj->photo as $photo){
+              var_dump($photo->url_q);
+            }
  ?>
