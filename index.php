@@ -33,8 +33,8 @@
       continue;
     }
 
-    if(preg_match('/^検索\s+(.+)/',$event->getText(),$word)){
-      $res = $app->search($word);
+    if(preg_match('/^検索\s(.+)/',$event->getText(),$word)){
+      $res = $app->search($word[1]);
     }else{
       continue;
     }
