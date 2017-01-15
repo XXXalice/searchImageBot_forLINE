@@ -33,27 +33,8 @@
       continue;
     }
     $res = $app->search($event->getText());
-    $bot->replyText($event->getReplyToken(),$res[0]);
+    $imageMassageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder(key($res),$res[key($res)]);
+    $execution = $bot->replyMessage($event->getReplyToken(),$imageMassageBuilder);
   }
 
-
-
-
-
-
-            $option = [
-                'text'=>'たいやき',
-                'media'=>'photos',
-                'per_page'=>2,
-                'extras'=>'url_q,url_o',
-                'safe_search'=>1
-            ];
-            $res = $flickr->photos_search($option);
-            $json = json_encode($res);
-            $obj = json_decode($json);
-            //var_dump($obj->photo[0]->url_q);
-            foreach($obj->photo as $photo){
-              var_dump($photo->url_q);
-              var_dump($photo->url_o);
-            }
  ?>

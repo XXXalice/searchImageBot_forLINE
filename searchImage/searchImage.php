@@ -6,12 +6,17 @@
             global $flickr;
             $option = [
                 'text'=>$str,
+                'media'=>'photos',
                 'per_page'=>1,
-                'extra'=>'url_q'
+                'extras'=>'url_q,url_o'
             ];
-            $res = $flickr->photos_search($option);
-            $json = json_encode($res);            
-        }
+            $img = [];
+            $obj = json_decode(json_encode($flickr->photos_search($option)));
+            foreach($obj->photo as $photo){
+                $img[$photo->url_q] = $photo->url_o;
+            }
+            return $img;            
+        }  
     }
 
 ?>
