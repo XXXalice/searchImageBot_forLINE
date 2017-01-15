@@ -44,7 +44,7 @@
             $option = [
                 'text'=>'たいやき',
                 'media'=>'photos',
-                'per_page'=>1,
+                'per_page'=>2,
                 'extras'=>'url_q,url_c',
                 'safe_search'=>1
             ];
