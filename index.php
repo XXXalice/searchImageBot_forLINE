@@ -45,7 +45,7 @@
                 'text'=>'たいやき',
                 'media'=>'photos',
                 'per_page'=>2,
-                'extras'=>'url_q,url_c',
+                'extras'=>'url_q,url_o',
                 'safe_search'=>1
             ];
             $res = $flickr->photos_search($option);
@@ -54,5 +54,6 @@
             //var_dump($obj->photo[0]->url_q);
             foreach($obj->photo as $photo){
               var_dump($photo->url_q);
+              var_dump($photo->url_o);
             }
  ?>
