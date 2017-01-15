@@ -13,7 +13,7 @@
             $img = [];
             $obj = json_decode(json_encode($flickr->photos_search($option)));
             foreach($obj->photo as $photo){
-                $img[0] = $photo->url_o;
+                $img[0] = $photo->url_q;
             }
             return $img;            
         }  
