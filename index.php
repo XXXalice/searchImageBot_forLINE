@@ -32,7 +32,13 @@
       error_log('Non text message has come');
       continue;
     }
-    $res = $app->search($event->getText());
+
+    if(preg_match('/^検索\s+(.+)/',$event->getText(),$word)){
+      $res = $app->search($word);
+    }else{
+      continue;
+    }
+    
     if($res[0] && $res[1]){
       $imageMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($res[1],$res[0]);
       $execution = $bot->replyMessage($event->getReplyToken(),$imageMessageBuilder);
