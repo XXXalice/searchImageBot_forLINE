@@ -8,7 +8,8 @@
                 'text'=>$str,
                 'media'=>'photos',
                 'per_page'=>1,
-                'extras'=>'url_q,url_m'
+                'extras'=>'url_q,url_m',
+                'sort'=>'interestingness-desc'
             ];
             $img = [];
             $obj = json_decode(json_encode($flickr->photos_search($option)));
