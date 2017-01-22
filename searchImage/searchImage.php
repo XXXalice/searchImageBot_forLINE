@@ -34,7 +34,7 @@
             $obj = json_decode(json_encode($flickr->photos_search($option)));
             for($i = 0;$i <= $num ;$i++){
                 $photo = $obj->photo[mt_rand(0,count($obj->photo))];
-                $img[] = [$photo->url_q,$photo->url_m];
+                $img[$i] = [$photo->url_q,$photo->url_m];
             }
             return $img;
         }
