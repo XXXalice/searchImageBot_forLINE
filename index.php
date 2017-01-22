@@ -36,6 +36,7 @@
 
     //分岐1 枚数指定のあった場合
     if(preg_match('/^検索\s(\S+)\s([1-5])$/',$event->getText(),$word)){
+      $bot->replyText($event->getReplyToken(),"$word[1]$word[2]");
       $res = $app->search_all($word[1],$word[2]);
       if($res[0]){
         foreach($res as $photo){
