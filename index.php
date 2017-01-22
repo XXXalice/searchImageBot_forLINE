@@ -33,18 +33,31 @@
       continue;
     }
 
-    if(preg_match('/^検索\s(.+)/',$event->getText(),$word)){
+
+    //分岐1 枚数指定のあった場合
+    if(preg_match('/^検索\s(.+)\s([1-5])$/',$event->getText(),$word)){
+      $res = $app->search_all($word[1],$word[2]);
+      if($res[0]){
+        foreach($res as $photo){
+          $imageMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($photo[1],$photo[0]);
+          $execution = $bot->replyMessage($event->getReplyToken(),$imageMessageBuilder);
+        }
+      }else{
+          $bot->replyText($event->getReplyToken(),"画像が見つからなかったよ…　ごめんなさい…");
+      }
+    }
+
+    //分岐2 枚数指定のなかった場合
+    else if(preg_match('/^検索\s(.+)$/',$event->getText(),$word)){
       $res = $app->search($word[1]);
-    }else{
-      continue;
+      if($res[0] && $res[1]){
+        $imageMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($res[1],$res[0]);
+        $execution = $bot->replyMessage($event->getReplyToken(),$imageMessageBuilder);
+      }else{
+        $bot->replyText($event->getReplyToken(),"画像が見つからなかったよ…　ごめんなさい…");
+      }
     }
     
-    if($res[0] && $res[1]){
-      $imageMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($res[1],$res[0]);
-      $execution = $bot->replyMessage($event->getReplyToken(),$imageMessageBuilder);
-    }else{
-      $bot->replyText($event->getReplyToken(),"画像が見つからなかったよ…　ごめんなさい…");
-    }
   }
 
  ?>
