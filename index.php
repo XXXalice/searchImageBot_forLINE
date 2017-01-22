@@ -5,6 +5,9 @@
   require_once __DIR__ . '/searchImage/searchImage.php';
   require_once __DIR__ . '/searchImage/phpFlickr.php';
 
+  use \LINE\LINEBot\MessageBuilder\ImageMessageBuilder;
+  use \LINE\LINEBot\MessageBuilder\MultiMessageBuilder;
+
   $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($channelToken);
   $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
   $app = new searchImage();
@@ -38,9 +41,12 @@
     if(preg_match('/^検索\s(\S+)\s([1-5])$/',$event->getText(),$word)){
       $res = $app->search_all($word[1],$word[2]);
       if($res[0]){
-          $imageMessageBuilder1 = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($res[0][1],$res[0][0]);
-          $imageMessageBuilder2 = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($res[1][1],$res[1][0]);
-          $execution = $bot->replyMessage($event->getReplyToken(),$imageMessageBuilder1,$imageMessageBuilder);
+          $image1 = new ImageMessageBuilder($res[0][1],$res[0][0]);
+          $image2 = new ImageMessageBuilder($res[1][1],$res[1][0]);
+          $message = new MultiMessageBuilder();
+          $message->add($image1);
+          $message->add($image2);
+          $execution = $bot->replyMessage($event->getReplyToken(),$message);
       }else{
           $bot->replyText($event->getReplyToken(),"画像が見つからなかったよ…　ごめんなさい…");
       }
@@ -50,7 +56,7 @@
     else if(preg_match('/^検索\s(.+)$/',$event->getText(),$word)){
       $res = $app->search($word[1]);
       if($res[0] && $res[1]){
-        $imageMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($res[1],$res[0]);
+        $imageMessageBuilder = new ImageMessageBuilder($res[1],$res[0]);
         $execution = $bot->replyMessage($event->getReplyToken(),$imageMessageBuilder);
       }else{
         $bot->replyText($event->getReplyToken(),"画像が見つからなかったよ…　ごめんなさい…");
