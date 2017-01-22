@@ -38,11 +38,9 @@
     if(preg_match('/^検索\s(\S+)\s([1-5])$/',$event->getText(),$word)){
       $res = $app->search_all($word[1],$word[2]);
       if($res[0]){
-        $bot->replyText($event->getReplyToken(),"{$res[0][0]}\n{$res[0][1]}\n{$res[1][0]}\n{$res[1][1]}");
-        foreach($res as $photo){
-          $imageMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($photo[1],$photo[0]);
-          $execution = $bot->replyMessage($event->getReplyToken(),$imageMessageBuilder);
-        }
+          $imageMessageBuilder1 = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($res[0][1],$res[0][0]);
+          $imageMessageBuilder2 = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($res[1][1],$res[1][0]);
+          $execution = $bot->replyMessage($event->getReplyToken(),$imageMessageBuilder1,$imageMessageBuilder);
       }else{
           $bot->replyText($event->getReplyToken(),"画像が見つからなかったよ…　ごめんなさい…");
       }
