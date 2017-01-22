@@ -10,7 +10,7 @@
             $option = [
                 'text'=>$str,
                 'media'=>'photos',
-                'per_page'=>20,
+                'per_page'=>30,
                 'extras'=>'url_q,url_m',
                 'sort'=>'interestingness-desc'
             ];
@@ -27,7 +27,7 @@
             $option = [
                 'text'=>$str,
                 'media'=>'photos',
-                'per_page'=>20,
+                'per_page'=>30,
                 'extras'=>'url_q,url_m',
                 'sort'=>'interestingness-desc'
             ];

@@ -41,11 +41,11 @@
     if(preg_match('/^検索\s(\S+)\s([1-5])$/',$event->getText(),$word)){
       $res = $app->search_all($word[1],$word[2]);
       if($res[0]){
-          $image1 = new ImageMessageBuilder($res[0][1],$res[0][0]);
-          $image2 = new ImageMessageBuilder($res[1][1],$res[1][0]);
           $message = new MultiMessageBuilder();
-          $message->add($image1);
-          $message->add($image2);
+          foreach($res as $photo){
+            $image = new ImageMessageBuilder($photo[1],$photo[0]);
+            $message->add($image);
+          }
           $execution = $bot->replyMessage($event->getReplyToken(),$message);
       }else{
           $bot->replyText($event->getReplyToken(),"画像が見つからなかったよ…　ごめんなさい…");
