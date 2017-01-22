@@ -38,6 +38,7 @@
     if(preg_match('/^検索\s(\S+)\s([1-5])$/',$event->getText(),$word)){
       $res = $app->search_all($word[1],$word[2]);
       if($res[0]){
+        $bot->replyText($event->getReplyToken(),"$res[0][0]$res[0][1]$res[1][0]$res[1][1]");
         foreach($res as $photo){
           $imageMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($photo[1],$photo[0]);
           $execution = $bot->replyMessage($event->getReplyToken(),$imageMessageBuilder);
